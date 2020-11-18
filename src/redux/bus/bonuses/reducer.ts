@@ -3,6 +3,7 @@ import {
   SET_LOADING,
   SET_ERROR,
   SET_BONUSES,
+  SET_BONUS_ACTIVATION,
   BonusesActionTypes,
 } from "./types";
 
@@ -21,6 +22,21 @@ export const bonusesReducer = (
       return {
         ...state,
         bonuses: action.payload,
+      };
+    case SET_BONUS_ACTIVATION:
+      const changeIndex = state.bonuses.findIndex(
+        (bonus) => bonus.title === action.payload.title
+      );
+      const updatedBonuses = [...state.bonuses];
+      if (changeIndex >= 0) {
+        updatedBonuses[changeIndex] = {
+          ...updatedBonuses[changeIndex],
+          activated: action.payload.isActivated,
+        };
+      }
+      return {
+        ...state,
+        bonuses: updatedBonuses,
       };
     case SET_LOADING:
       return {

@@ -2,6 +2,8 @@ import {
   SET_LOADING,
   SET_ERROR,
   SET_BONUSES,
+  SET_BONUS_ACTIVATION,
+  BonusActivationPayload,
   BonusesActionTypes,
 } from "./types";
 import { ThunkAction } from "redux-thunk";
@@ -13,6 +15,13 @@ import { Bonus } from "sharedTypes";
 
 const setBonuses = (payload: Bonus[]): BonusesActionTypes => ({
   type: SET_BONUSES,
+  payload,
+});
+
+export const setBonusActivation = (
+  payload: BonusActivationPayload
+): BonusesActionTypes => ({
+  type: SET_BONUS_ACTIVATION,
   payload,
 });
 

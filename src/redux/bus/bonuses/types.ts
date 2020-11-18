@@ -6,6 +6,14 @@ export type BonusesState = {
   error: null | string;
 };
 
+export type BonusActivationPayload = { title: string; isActivated: boolean };
+
+export const SET_BONUS_ACTIVATION = "@BONUSES/SET_BONUS_ACTIVTION";
+type SetBonusActivation = {
+  type: typeof SET_BONUS_ACTIVATION;
+  payload: BonusActivationPayload;
+};
+
 export const SET_BONUSES = "@BONUSES/SET_BONUSES";
 type SetBonuses = {
   type: typeof SET_BONUSES;
@@ -24,4 +32,8 @@ type SetError = {
   payload: null | string;
 };
 
-export type BonusesActionTypes = SetLoading | SetError | SetBonuses;
+export type BonusesActionTypes =
+  | SetLoading
+  | SetError
+  | SetBonuses
+  | SetBonusActivation;
