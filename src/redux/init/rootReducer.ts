@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-//import { cityReducer as city } from "redux/bus/city/reducer";
+import { headerReducer as header } from "redux/bus/header/reducer";
 
-export const rootReducer = combineReducers({ main: (store) => store });
+export const rootReducer = combineReducers({ header });
 
 export type AppState = ReturnType<typeof rootReducer>;

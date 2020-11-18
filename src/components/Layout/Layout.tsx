@@ -1,13 +1,15 @@
 import React, { FC, ReactElement } from "react";
 import { Sidebar, Topbar } from "components";
 
+import "./Layout.styles.scss";
+
 const Layout: FC = ({ children }): ReactElement => {
   return (
-    <div>
+    <div className="app">
       <Sidebar />
-      <div>
+      <div className="container">
         <Topbar />
-        <div>{children}</div>
+        <main className="content">{children}</main>
       </div>
     </div>
   );
