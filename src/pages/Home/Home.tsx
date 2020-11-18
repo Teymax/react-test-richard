@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from "react";
 
-import { Filter } from "components";
+import { Filter, BonusList } from "components";
 
 import "./Home.styles.scss";
 
@@ -9,6 +9,7 @@ const Home: FC = (): ReactElement => {
     <div className="home">
       <h2 className="home__title">Services</h2>
       <Filter />
+      <BonusList />
     </div>
   );
 };

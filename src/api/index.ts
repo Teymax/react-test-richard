@@ -5,4 +5,8 @@ export const API = {
     const res = await fetch(URL + "header");
     return res.json();
   },
+  bonuses: async () => {
+    const res = await fetch(URL + "bonuses");
+    return res.json();
+  },
 };

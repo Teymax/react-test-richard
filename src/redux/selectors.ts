@@ -7,4 +7,7 @@ export const selectors = {
     getCurrency: (state: AppState) => state.header.currency,
     getLoading: (state: AppState) => state.header.loading,
   },
+  bonuses: {
+    getBonuses: (state: AppState) => state.bonuses.bonuses,
+  },
 };
