@@ -9,5 +9,6 @@ export const selectors = {
   },
   bonuses: {
     getBonuses: (state: AppState) => state.bonuses.bonuses,
+    getFilter: (state: AppState) => state.bonuses.filter,
   },
 };

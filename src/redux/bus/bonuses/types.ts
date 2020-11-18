@@ -2,6 +2,7 @@ import { Bonus } from "sharedTypes";
 
 export type BonusesState = {
   bonuses: Bonus[];
+  filter: string;
   loading: boolean;
   error: null | string;
 };
@@ -20,6 +21,12 @@ type SetBonuses = {
   payload: Bonus[];
 };
 
+export const SET_FILTER = "@BONUSES/SET_FILTER";
+type SetFilter = {
+  type: typeof SET_FILTER;
+  payload: string;
+};
+
 export const SET_LOADING = "@BONUSES/SET_LOADING";
 type SetLoading = {
   type: typeof SET_LOADING;
@@ -36,4 +43,5 @@ export type BonusesActionTypes =
   | SetLoading
   | SetError
   | SetBonuses
-  | SetBonusActivation;
+  | SetBonusActivation
+  | SetFilter;

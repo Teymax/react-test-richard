@@ -3,6 +3,7 @@ import {
   SET_ERROR,
   SET_BONUSES,
   SET_BONUS_ACTIVATION,
+  SET_FILTER,
   BonusActivationPayload,
   BonusesActionTypes,
 } from "./types";
@@ -22,6 +23,11 @@ export const setBonusActivation = (
   payload: BonusActivationPayload
 ): BonusesActionTypes => ({
   type: SET_BONUS_ACTIVATION,
+  payload,
+});
+
+export const setFilter = (payload: string): BonusesActionTypes => ({
+  type: SET_FILTER,
   payload,
 });
 
