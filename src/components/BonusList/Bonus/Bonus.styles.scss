@@ -43,6 +43,11 @@
       border-radius: 0.4rem;
       font-size: 1.5rem;
       color: #262626;
+      transition: all 0.3s;
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0.7rem #cfd2d9;
+      }
     }
     &-copy {
       position: absolute;
@@ -57,10 +62,35 @@
       color: #ffffff;
       border-radius: 0.4rem;
       cursor: pointer;
+      transition: all 0.3s;
+      outline: none;
       &:disabled {
         background-color: #888686;
         cursor: not-allowed;
       }
+      &:disabled:hover {
+        box-shadow: 0 0 0.7rem #888686;
+      }
+      &:focus,
+      &:active,
+      &:hover {
+        box-shadow: 0 0 0.7rem #0085ff;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .bonus {
+    flex-direction: column;
+    &__info {
+      width: 100%;
+      border-bottom: 1px solid #d1d0d0;
+      padding-bottom: 1.5rem;
+    }
+    &__promocode {
+      padding-top: 1.5rem;
+      width: 100%;
     }
   }
 }

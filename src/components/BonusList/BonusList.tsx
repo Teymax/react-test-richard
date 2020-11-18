@@ -1,27 +1,25 @@
 import React, { FC, ReactElement } from "react";
 
 import Bonus from "./Bonus/Bonus";
+import { BonusLoader } from "components";
 import "./BonusList.styles.scss";
 
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBonuses, setBonusActivation } from "redux/bus/bonuses/actions";
-import { selectors } from "redux/selectors";
+import { useBonusList } from "hooks/useBonusList";
 import { Bonus as BonusType } from "sharedTypes";
 
 const BonusList: FC = (): ReactElement => {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(fetchBonuses());
-  }, [dispatch]);
-  const bonuses = useSelector(selectors.bonuses.getBonuses);
-  const filter = useSelector(selectors.bonuses.getFilter);
+  const { bonuses, filter, loading, activateBonusHandler } = useBonusList();
 
-  const activateBonusHandler = React.useCallback(
-    (title: string) => {
-      dispatch(setBonusActivation({ title, isActivated: true }));
-    },
-    [dispatch]
-  );
+  if (loading)
+    return (
+      <>
+        <BonusLoader />
+        <BonusLoader />
+        <BonusLoader />
+        <BonusLoader />
+        <BonusLoader />
+      </>
+    );
 
   let filteredBonuses = bonuses;
   if (filter) {

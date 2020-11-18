@@ -1,26 +1,15 @@
 import React, { FC, ReactElement } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-import { selectors } from "redux/selectors";
-import { setFilter } from "redux/bus/bonuses/actions";
+import { useFilter } from "hooks/useFilter";
 
 import "./Filter.styles.scss";
 
 const Filter: FC = (): ReactElement => {
-  const dispatch = useDispatch();
-  const filter = useSelector(selectors.bonuses.getFilter);
-
-  const filterHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setFilter(e.target.value));
-  };
-
-  const resetFilterHandler = () => {
-    dispatch(setFilter(""));
-  };
+  const { filter, filterHandler, resetFilterHandler, t } = useFilter();
 
   return (
     <div className="filter">
-      <h3 className="filter__title">Filter</h3>
+      <h3 className="filter__title">{t("Filter")}</h3>
       <div className="filter__actions">
         <input
           className="filter__input"
@@ -30,7 +19,7 @@ const Filter: FC = (): ReactElement => {
           onChange={filterHandler}
         />
         <button className="filter__reset" onClick={resetFilterHandler}>
-          Reset
+          {t("Reset")}
         </button>
       </div>
     </div>

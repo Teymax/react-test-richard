@@ -1,22 +1,13 @@
 import React, { FC, ReactElement } from "react";
 
-import { fetchHeaderData } from "redux/bus/header/actions";
-import { selectors } from "redux/selectors";
-import { useDispatch, useSelector } from "react-redux";
-
 import { HeaderLoader } from "components";
+
+import { useTopbar } from "hooks/useTopbar";
 
 import "./Topbar.styles.scss";
 
 const Topbar: FC = (): ReactElement => {
-  const dispatch = useDispatch();
-  const loading = useSelector(selectors.header.getLoading);
-  const balance = useSelector(selectors.header.getBalance);
-  const nextPayout = useSelector(selectors.header.getNextPayout);
-  const currency = useSelector(selectors.header.getCurrency);
-  React.useEffect(() => {
-    dispatch(fetchHeaderData());
-  }, [dispatch]);
+  const { loading, balance, nextPayout, currency, t } = useTopbar();
 
   const topBarJSX = loading ? (
     <>
@@ -26,16 +17,18 @@ const Topbar: FC = (): ReactElement => {
   ) : (
     <>
       <div className="topbar__element">
-        <h3 className="topbar__element-title">Balance</h3>
+        <h3 className="topbar__element-title">{t("Balance")}</h3>
         <p className="topbar__element-value">
-          {balance} {currency === "usd" ? "$" : ""}
+          {balance !== null ? balance.toLocaleString() : null}{" "}
+          {currency === "usd" ? "$" : ""}
         </p>
       </div>
 
       <div className="topbar__element">
-        <h3 className="topbar__element-title">Payout</h3>
+        <h3 className="topbar__element-title">{t("Payout")}</h3>
         <p className="topbar__element-value">
-          {nextPayout} {currency === "usd" ? "$" : ""}
+          {nextPayout !== null ? nextPayout.toLocaleString() : null}{" "}
+          {currency === "usd" ? "$" : ""}
         </p>
       </div>
     </>

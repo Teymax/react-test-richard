@@ -4,6 +4,7 @@ import { Bonus as BonusType } from "sharedTypes";
 
 import "./Bonus.styles.scss";
 import copy from "assets/images/copy.svg";
+import { useTranslation } from "react-i18next";
 
 type PropTypes = {
   bonus: BonusType;
@@ -14,8 +15,9 @@ const Bonus: FC<PropTypes> = React.memo(
   ({ bonus, activateBonusHandler }): ReactElement => {
     const { title, description, link, promocode, activated } = bonus;
     const inputEl = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+    const { t } = useTranslation();
 
-    const copyToClipboard = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const copyToClipboard = (e: React.MouseEvent) => {
       inputEl.current.select();
       document.execCommand("copy");
     };
@@ -29,7 +31,7 @@ const Bonus: FC<PropTypes> = React.memo(
           <p className="bonus__description">{description}</p>
         </div>
         <div className="bonus__promocode">
-          <span className="bonus__promocode-title">Promocode</span>
+          <span className="bonus__promocode-title">{t("Promocode")}</span>
           <div className="bonus__promocode-actions">
             <div className="bonus__promocode-wrapper">
               <input
@@ -49,7 +51,7 @@ const Bonus: FC<PropTypes> = React.memo(
               onClick={() => activateBonusHandler(title)}
               disabled={activated}
             >
-              {activated ? "Bonus activated" : "Activate bonus"}
+              {activated ? t("Bonus activated") : t("Activate bonus")}
             </button>
           </div>
         </div>
