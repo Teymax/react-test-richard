@@ -51,8 +51,12 @@ export const fetchBonuses = (): ThunkAction<
     dispatch(setLoading(true));
     dispatch(setError(null));
     const res = await API.bonuses();
-    if (!res) throw new Error(res);
+    if (Object.keys(res).length === 0) throw new Error("Data fetch error");
     dispatch(setBonuses(createBonusesArray(res)));
     dispatch(setLoading(false));
-  } catch (err) {}
+  } catch (err) {
+    console.error(err);
+    dispatch(setError(err.message));
+    dispatch(setLoading(false));
+  }
 };

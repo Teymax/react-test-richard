@@ -11,6 +11,8 @@ export const useTopbar = () => {
   const balance = useSelector(selectors.header.getBalance);
   const nextPayout = useSelector(selectors.header.getNextPayout);
   const currency = useSelector(selectors.header.getCurrency);
+  const error = useSelector(selectors.header.getError);
+
   React.useEffect(() => {
     dispatch(fetchHeaderData());
   }, [dispatch]);
@@ -19,6 +21,7 @@ export const useTopbar = () => {
 
   return {
     loading,
+    error,
     balance,
     nextPayout,
     currency,

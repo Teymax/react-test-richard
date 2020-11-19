@@ -27,16 +27,13 @@ export const bonusesReducer = (
       };
 
     case SET_BONUS_ACTIVATION:
-      const changeIndex = state.bonuses.findIndex(
-        (bonus) => bonus.title === action.payload.title
-      );
-      const updatedBonuses = [...state.bonuses];
-      if (changeIndex >= 0) {
-        updatedBonuses[changeIndex] = {
-          ...updatedBonuses[changeIndex],
-          activated: action.payload.isActivated,
-        };
-      }
+      const updatedBonuses = state.bonuses.map((bonus) => {
+        if (bonus.title === action.payload.title) {
+          return { ...bonus, activated: action.payload.isActivated };
+        }
+        return bonus;
+      });
+
       return {
         ...state,
         bonuses: updatedBonuses,

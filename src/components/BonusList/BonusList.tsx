@@ -8,7 +8,13 @@ import { useBonusList } from "hooks/useBonusList";
 import { Bonus as BonusType } from "sharedTypes";
 
 const BonusList: FC = (): ReactElement => {
-  const { bonuses, filter, loading, activateBonusHandler } = useBonusList();
+  const {
+    bonuses,
+    filter,
+    loading,
+    error,
+    activateBonusHandler,
+  } = useBonusList();
 
   if (loading)
     return (
@@ -20,6 +26,9 @@ const BonusList: FC = (): ReactElement => {
         <BonusLoader />
       </>
     );
+
+  if (!loading && error)
+    return <div className="bonus-list__error">{error}</div>;
 
   let filteredBonuses = bonuses;
   if (filter) {

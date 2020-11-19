@@ -12,6 +12,7 @@ export const useBonusList = () => {
   const bonuses = useSelector(selectors.bonuses.getBonuses);
   const filter = useSelector(selectors.bonuses.getFilter);
   const loading = useSelector(selectors.bonuses.getLoading);
+  const error = useSelector(selectors.bonuses.getError);
 
   const activateBonusHandler = React.useCallback(
     (title: string) => {
@@ -24,6 +25,7 @@ export const useBonusList = () => {
     bonuses,
     filter,
     loading,
+    error,
     activateBonusHandler,
   };
 };

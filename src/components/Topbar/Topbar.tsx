@@ -7,7 +7,14 @@ import { useTopbar } from "hooks/useTopbar";
 import "./Topbar.styles.scss";
 
 const Topbar: FC = (): ReactElement => {
-  const { loading, balance, nextPayout, currency, t } = useTopbar();
+  const { loading, error, balance, nextPayout, currency, t } = useTopbar();
+
+  if (error && !loading)
+    return (
+      <div className="topbar">
+        <div className="topbar__error">{error}</div>
+      </div>
+    );
 
   const topBarJSX = loading ? (
     <>
@@ -19,15 +26,14 @@ const Topbar: FC = (): ReactElement => {
       <div className="topbar__element">
         <h3 className="topbar__element-title">{t("Balance")}</h3>
         <p className="topbar__element-value">
-          {balance !== null ? balance.toLocaleString() : null}{" "}
-          {currency === "usd" ? "$" : ""}
+          {balance && balance.toLocaleString()} {currency === "usd" ? "$" : ""}
         </p>
       </div>
 
       <div className="topbar__element">
         <h3 className="topbar__element-title">{t("Payout")}</h3>
         <p className="topbar__element-value">
-          {nextPayout !== null ? nextPayout.toLocaleString() : null}{" "}
+          {nextPayout && nextPayout.toLocaleString()}{" "}
           {currency === "usd" ? "$" : ""}
         </p>
       </div>
